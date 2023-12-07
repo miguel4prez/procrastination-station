@@ -37,18 +37,74 @@ The HTML file `index.html` serves as the structure of the Procrastination Statio
 - Fetches random activities from an external API (`http://www.boredapi.com/api/activity/`).
 - Displays activity details in a popup and enables adding to favorites.
 
+```javascript
+const randomBtn = document.querySelector(".random-btn");
+
+randomBtn.addEventListener('click', () => {
+  fetch("http://www.boredapi.com/api/activity/")
+  .then(res => res.json())
+  .then(activities => {
+    // Code to display activity details in a popup
+    // Code to add activity to favorites
+  })
+});
+```
 ### Featured Activities Interaction
 - Fetches and displays featured activities from a local database (`http://localhost:3000/activities`).
 - Provides hover and click functionalities for interaction.
-
+```javascript
+fetch("http://localhost:3000/activities")
+.then(res => res.json())
+.then(activities => { 
+  activities.forEach(act => {
+    // Code to display featured activities and their interactions
+  });
+});
+```
 ### User-Added Custom Activities
 - Allows users to add custom activities via a form and displays them in the Personal Activities section.
+```javascript 
+const form = document.querySelector("#new-activity-form");
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  // Code to handle form submission and display user-added activities
+});
+```
 
 ### Favorites Management
-- Enables adding and removing activities from the Favorites section.
+- Enables adding and removing activities from the Favorites section temporarily.
+
+```javascript 
+removeBtn.addEventListener('click', () => {
+        favoriteName.remove();
+        favTypes.remove();
+        favParticipants.remove();
+        favPrice.remove();
+        favAccess.remove();
+        removeBtn.remove();
+
+        if (favoritesDiv.children.length === 0 && !favoritesDiv.contains(favsPlaceholder)) {
+          favoritesDiv.appendChild(favsPlaceholder);
+        } else if (favoritesDiv.children.length > 0 && favoritesDiv.contains(favsPlaceholder)) {
+          favsPlaceholder.remove();
+        }
+```
+
 
 ### Popups for Confirmation
 - Confirms actions like adding to favorites, form submission, and removing activities.
+- I did this by adding a style to the popup's HTML with 'none' and then using this function to display it when the function is called.
+```javascript
+function showPopup() {
+  const popup = document.querySelector("#popup");
+  popup.style.display = 'block';
+
+  setTimeout(() => {
+    popup.style.display = 'none';
+  }, 3000); 
+}
+```
 
 This JavaScript code significantly enhances user interaction and experience on the webpage, allowing for dynamic content generation, customization, and management of activities across various sections.
 
