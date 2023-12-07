@@ -1,0 +1,31 @@
+{
+  "activities": [
+    {
+      "activity": "Create a personal website",
+      "type": "recreational",
+      "participants": 1,
+      "price": 0.1,
+      "link": "",
+      "key": "3141417",
+      "accessibility": 0.12
+    },
+    {
+      "activity": "Meditate for five minutes",
+      "type": "relaxation",
+      "participants": 1,
+      "price": 0,
+      "link": "",
+      "key": "3699502",
+      "accessibility": 0.05
+    },
+    {
+      "activity": "Start a band",
+      "type": "music",
+      "participants": 4,
+      "price": 0.3,
+      "link": "",
+      "key": "5675880",
+      "accessibility": 0.8
+    }
+  ]
+}
