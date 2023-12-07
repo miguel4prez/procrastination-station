@@ -240,7 +240,7 @@ form.addEventListener('submit', (e) => {
   emptyDiv.remove();
   
   personalDiv.append(listName, listType, listParticipants, listPrice, listAccess, removeBtn)
-  e.target.reset()
+  e.target.reset()``
 
   removeBtn.addEventListener('click', () => {
     listName.remove();
