@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procrastination Station</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<div class="header-section">
+  <img id="logo-img" src="./assets/Procrastination Station.png" alt="procrastination-station">
+</div>
+
+
+<button class="random-btn">Click for a random activity!</button>
+
+<div id="random-activity-popup">
+    <p id="type-name"></p>
+    <p id="participants-value"></p>
+    <p id="price-value"></p>
+    <p id="accessibility-value"></p>
+</div>
+
+<div id="popup" style="display: none;">
+  Activity added to your list! &#x2713;
+</div>
+
+<div id="featured-section">
+  <h1>Featured Activities</h1>
+  <div id="featured-activities">
+    <!-- <img src="./assets/band.jpeg" alt="Start A Band"> -->
+  </div>
+</div>
+
+<div id="popup-section">
+  <div id="featured-popup-card">
+    <h1 id="featured-activity-name"></h1>
+    <!-- <img id="featured-popup-img"/> -->
+    <p id="featured-type"></p>
+    <p id="featured-participants"></span></p>
+    <p id="featured-price"></p>
+    <p id="featured-accessibility"></p>
+    <button style="display: none;" id="featured-save-btn"></button>
+  </div>
+  <div id="featured-popup" style="display: none;">
+    Activity added to your list! &#x2713;
+  </div>
+</div>
+
+<div id="favorites-section">
+  <h1>Favorite Activities</h1>
+  <div id="favorites-div"> 
+  </div>
+</div>
+
+<div id="form-section">
+  <h1>Have an activity in mind?</h1>
+  <h3>Add your own list!</h3>
+  <form id="new-activity-form">
+    <label for="activity">Activity:</label>
+    <input type="text" id="form-activity" name="activity" placeholder="Activity Name">
+    <label for="act-type">Type:</label>
+    <input type="text" id="form-type" name="act-type" placeholder="Enter type of activity">
+    <label for="participants">Participants: </label>
+    <input type="text" id="form-par" name="participants" placeholder="Number of participants">
+    <label for="price">Price: </label>
+    <input type="text" id="form-price" name="price" placeholder="Enter price (w/o $)">
+    <label for="access">Accessibility: </label>
+    <input type="text" id="form-access" name="access" placeholder="Enter accessibility (1 out of 10)">
+    <input type="submit" id="submit-btn" value="Submit">
+  </form>
+  <div id="submit-popup" style="display: none;">
+    Form Submitted! &#x2713;
+  </div>
+</div>
+
+
+<div id="personal-section">
+  <h1>Personal Activities</h1>
+  <div id="personal-list">
+    <!-- <img src="./assets/band.jpeg" alt=""> -->
+  </div>
+</div>
+
+<script defer src="./src/index.js"></script>
+</body>
+</html>
