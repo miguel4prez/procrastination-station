@@ -113,95 +113,94 @@ randomBtn.addEventListener('click', () => {
   })
 })
 
-// My own database
 fetch("http://localhost:3000/activities")
-.then(res => res.json())
-.then(activities => { 
-     
-  activities.forEach(act => {
-    const featuredActivities = document.querySelector("#featured-activities");
-    const featuredNameDisplay = document.createElement("h3");
-    featuredNameDisplay.className = "featured-ptag"
-    featuredNameDisplay.textContent = act.activity;
-    featuredActivities.append(featuredNameDisplay);
+  .then(res => res.json())
+  .then(activities => { 
+    activities.forEach(act => {
+      const featuredActivities = document.querySelector("#featured-activities");
+      const featuredNameDisplay = document.createElement("h3");
+      featuredNameDisplay.className = "featured-ptag";
+      featuredNameDisplay.textContent = act.activity;
+      featuredActivities.append(featuredNameDisplay);
 
-    featuredNameDisplay.addEventListener('mouseover', () => {
-      featuredNameDisplay.style.color = '#f5b1f4'
-    })
+      featuredNameDisplay.addEventListener('click', () => {
+        const featuredCards = document.querySelector("#featured-popup-card");
+        const featuredName = document.querySelector("#featured-activity-name");
+        const featuredType = document.querySelector("#featured-type");
+        const featuredPrice = document.querySelector("#featured-price");
+        const featuredParticipants = document.querySelector("#featured-participants");
+        const featuredAccessibility = document.querySelector("#featured-accessibility");
+        const favBtn = document.querySelector("#featured-save-btn");
+            
+        favBtn.textContent = "Favorite";
+        favBtn.style.display = "inline-flex";
+        
+        featuredName.textContent = act.activity;
+        featuredType.textContent = `Type: ${act.type}`;
+        featuredParticipants.textContent = `Participants: ${act.participants}`;
+        featuredPrice.textContent = `Price: $${act.price}`;
+    
+        if (act.accessibility < 0.5) {
+          featuredAccessibility.textContent = `Accessibility: Most Accessible!`;
+        } else if (act.accessibility <= 0.5 && act.accessibility <= 0.8) {
+          featuredAccessibility.textContent = `Accessibility: Sort of Accessible!`;
+        } else {
+          featuredAccessibility.textContent = `Accessibility: Not That Accessible`;
+        }
+    
+        featuredCards.innerHTML = ''; // Clear previous content
+        featuredCards.append(featuredName, featuredType, featuredParticipants, featuredPrice, featuredAccessibility, favBtn);
+        
+        favBtn.removeEventListener('click', handleFavoriteClick); // Remove previous event listener
+        favBtn.addEventListener('click', handleFavoriteClick); // Add new event listener
+      });
+    });
+});
 
-    featuredNameDisplay.addEventListener('mouseout', () => {
-      featuredNameDisplay.style.color = 'black'
-    })
+function handleFavoriteClick() {
+  const favoritesDiv = document.querySelector("#favorites-div");
+  const featuredName = document.querySelector("#featured-activity-name");
+  const featuredType = document.querySelector("#featured-type");
+  const featuredParticipants = document.querySelector("#featured-participants");
+  const featuredAccessibility = document.querySelector("#featured-accessibility");
 
-    featuredNameDisplay.addEventListener('click', () => {
-      const featuredCards = document.querySelector("#featured-popup-card");
-      const featuredName = document.querySelector("#featured-activity-name");
-      const featuredType = document.querySelector("#featured-type");
-      const featuredPrice = document.querySelector("#featured-price")
-      const featuredParticipants = document.querySelector("#featured-participants")
-      const featuredAccessibility = document.querySelector("#featured-accessibility");
-      const favBtn = document.querySelector("#featured-save-btn");
-          
-      favBtn.textContent = "Favorite";
-      favBtn.style.display = "inline-flex"
+  const favoriteName = document.createElement("h3")
+  const removeBtn = document.createElement("button")
+  const favTypes = document.createElement("p");
+  const favParticipants = document.createElement("p");
+  const favPrice = document.createElement("p");
+  const favAccess = document.createElement("p");
+
+  removeBtn.setAttribute("id", "remove-btn");
+
+  favoriteName.textContent = featuredName.textContent;
+  favTypes.textContent = featuredType.textContent;
+  favParticipants.textContent = featuredParticipants.textContent;
+  favPrice.textContent = featuredType.textContent;
+  favAccess.textContent = featuredAccessibility.textContent;
+  removeBtn.textContent = "Remove"
+
+  favoritesDiv.append(favoriteName, favTypes, favParticipants, favPrice, favAccess, removeBtn)
+
+   favsPlaceholder.remove();
       
-      featuredName.textContent = act.activity
-      featuredType.textContent = `Type: ${act.type}`;
-      featuredParticipants.textContent = `Participants: ${act.participants}`;
-      featuredPrice.textContent = `Price: $${act.price}`;
-  
-      if (act.accessibility < 0.5){
-        featuredAccessibility.textContent = `Accessibility: Most Accessible!`
-      } else if (act.accessibility <= 0.5 && act.accessibility <= 0.8){
-        featuredAccessibility.textContent = `Accessibility: Sort of Accessible!`
-      } else {
-            featuredAccessibility.textContent = `Accessibility: Not That Accessible`
-      }
-  
-      featuredCards.append(featuredName, featuredType, featuredParticipants, featuredPrice, featuredAccessibility, favBtn)
-      favBtn.addEventListener('click', () => {
-        let favoritesDiv = document.querySelector("#favorites-div");
-      
-        const favoriteName = document.createElement("h3")
-        const removeBtn = document.createElement("button")
-        const favTypes = document.createElement("p");
-        const favParticipants = document.createElement("p");
-        const favPrice = document.createElement("p");
-        const favAccess = document.createElement("p");
-      
-        removeBtn.setAttribute("id", "remove-btn");
-      
-        favoriteName.textContent = featuredName.textContent;
-        favTypes.textContent = featuredType.textContent;
-        favParticipants.textContent = featuredParticipants.textContent;
-        favPrice.textContent = featuredType.textContent;
-        favAccess.textContent = featuredAccessibility.textContent;
-        removeBtn.textContent = "Remove"
-      
-        favsPlaceholder.remove();
-      
-        featuredPopup();
-      
-        favoritesDiv.append(favoriteName, favTypes, favParticipants, favPrice, favAccess, removeBtn)
-      
-        removeBtn.addEventListener('click', () => {
-          favoriteName.remove();
-          favTypes.remove();
-          favParticipants.remove();
-          favPrice.remove();
-          favAccess.remove();
-          removeBtn.remove();
-      
-          if (favoritesDiv.children.length === 0 && !favoritesDiv.contains(favsPlaceholder)) {
-            favoritesDiv.appendChild(favsPlaceholder);
-          } else if (favoritesDiv.children.length > 0 && favoritesDiv.contains(favsPlaceholder)) {
-            favsPlaceholder.remove();
-          }
-        })
-      })
-    })
-  })   
-})
+  featuredPopup();
+
+  removeBtn.addEventListener('click', () => {
+    favoriteName.remove();
+    favTypes.remove();
+    favParticipants.remove();
+    favPrice.remove();
+    favAccess.remove();
+    removeBtn.remove();
+
+    if (favoritesDiv.children.length === 0 && !favoritesDiv.contains(favsPlaceholder)) {
+      favoritesDiv.appendChild(favsPlaceholder);
+    } else if (favoritesDiv.children.length > 0 && favoritesDiv.contains(favsPlaceholder)) {
+      favsPlaceholder.remove();
+    }
+  })
+}
 
 const form = document.querySelector("#new-activity-form");
 
@@ -240,7 +239,7 @@ form.addEventListener('submit', (e) => {
   emptyDiv.remove();
   
   personalDiv.append(listName, listType, listParticipants, listPrice, listAccess, removeBtn)
-  e.target.reset()``
+  e.target.reset()
 
   removeBtn.addEventListener('click', () => {
     listName.remove();
@@ -259,6 +258,3 @@ form.addEventListener('submit', (e) => {
   })
 })
 
-// Figure out how to get images on the DOM
-// Fix alignment issues
-// Decorate a bit more

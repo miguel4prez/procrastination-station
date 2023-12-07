@@ -26,6 +26,22 @@
       "link": "",
       "key": "5675880",
       "accessibility": 0.8
+    }, {
+      "activity": "Compliment someone",
+      "type": "social",
+      "participants": 2,
+      "price": 0,
+      "link": "",
+      "key": "9149470",
+      "accessibility": 0
+    }, {
+      "activity": "Memorize the fifty states and their capitals",
+      "type": "education",
+      "participants": 1,
+      "price": 0,
+      "link": "",
+      "key": "4179309",
+      "accessibility": 0
     }
   ]
 }
