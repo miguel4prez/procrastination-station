@@ -76,6 +76,31 @@ form.addEventListener('submit', (e) => {
 - Enables adding and removing activities from the Favorites section temporarily.
 
 ```javascript 
+favBtn.addEventListener('click', () => {
+      let favoritesDiv = document.querySelector("#favorites-div");
+
+      const favoriteName = document.createElement("h3")
+      const removeBtn = document.createElement("button")
+      const favTypes = document.createElement("p");
+      const favParticipants = document.createElement("p");
+      const favPrice = document.createElement("p");
+      const favAccess = document.createElement("p");
+
+      removeBtn.setAttribute("id", "remove-btn");
+
+      favoriteName.textContent = popupName.textContent;
+      favTypes.textContent = type.textContent;
+      favParticipants.textContent = participants.textContent;
+      favPrice.textContent = price.textContent;
+      favAccess.textContent = accessibility.textContent;
+      removeBtn.textContent = "Remove"
+
+      favsPlaceholder.remove();
+
+      showPopup();
+
+      favoritesDiv.append(favoriteName, favTypes, favParticipants, favPrice, favAccess, removeBtn);
+
 removeBtn.addEventListener('click', () => {
         favoriteName.remove();
         favTypes.remove();
