@@ -283,11 +283,16 @@ h3 {
 }
 
 #personal-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
   margin-top: 20px;
   margin-bottom: 300px;
+}
+#personal-card {
+  display: inline-block;
+  margin: 15px;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: pink;
 }
 
 #empty-favorites {

@@ -203,8 +203,12 @@ form.addEventListener('submit', (e) => {
   }, 3000);
 
   emptyDiv.remove();
+
+  const personalCard = document.createElement('div')
+  personalCard.append(listName, listType, listParticipants, listPrice, listAccess, removeBtn)
+  personalCard.setAttribute("id", "personal-card")
   
-  personalDiv.append(listName, listType, listParticipants, listPrice, listAccess, removeBtn)
+  personalDiv.append(personalCard)
   e.target.reset()
 
   removeBtn.addEventListener('click', () => {
