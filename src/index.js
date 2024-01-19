@@ -32,7 +32,7 @@ const randomBtn = document.querySelector(".random-btn")
 // Event listener to display random activities and display in the
 //  favorites section
 randomBtn.addEventListener('click', () => {
-  fetch("http://www.boredapi.com/api/activity/")
+  fetch("https://www.boredapi.com/api/activity/")
   .then(res => res.json())
   .then(activities => {
     const popupDiv = document.querySelector("#random-activity-popup");
