@@ -70,46 +70,7 @@ randomBtn.addEventListener('click', () => {
     divCard.append(popupName, type, participants, price, accessibility, favBtn)
     popupDiv.append(divCard)
 
-    favBtn.addEventListener('click', () => {
-      let favoritesDiv = document.querySelector("#favorites-div");
-
-      const favoriteName = document.createElement("h3")
-      const removeBtn = document.createElement("button")
-      const favTypes = document.createElement("p");
-      const favParticipants = document.createElement("p");
-      const favPrice = document.createElement("p");
-      const favAccess = document.createElement("p");
-
-      removeBtn.setAttribute("id", "remove-btn");
-
-      favoriteName.textContent = popupName.textContent;
-      favTypes.textContent = type.textContent;
-      favParticipants.textContent = participants.textContent;
-      favPrice.textContent = price.textContent;
-      favAccess.textContent = accessibility.textContent;
-      removeBtn.textContent = "Remove"
-
-      favsPlaceholder.remove();
-
-      showPopup();
-
-      favoritesDiv.append(favoriteName, favTypes, favParticipants, favPrice, favAccess, removeBtn);
-
-      removeBtn.addEventListener('click', () => {
-        favoriteName.remove();
-        favTypes.remove();
-        favParticipants.remove();
-        favPrice.remove();
-        favAccess.remove();
-        removeBtn.remove();
-
-        if (favoritesDiv.children.length === 0 && !favoritesDiv.contains(favsPlaceholder)) {
-          favoritesDiv.appendChild(favsPlaceholder);
-        } else if (favoritesDiv.children.length > 0 && favoritesDiv.contains(favsPlaceholder)) {
-          favsPlaceholder.remove();
-        }
-      })
-    })
+    handleFavoriteClick();
   })
 })
 
@@ -180,9 +141,13 @@ function handleFavoriteClick() {
   favAccess.textContent = featuredAccessibility.textContent;
   removeBtn.textContent = "Remove"
 
-  favoritesDiv.append(favoriteName, favTypes, favParticipants, favPrice, favAccess, removeBtn)
+  const favoritesCard = document.createElement('div')
+  favoritesCard.setAttribute('id', 'favorites-card')
 
-   favsPlaceholder.remove();
+  favoritesCard.append(favoriteName, favTypes, favParticipants, favPrice, favAccess, removeBtn)
+  favoritesDiv.append(favoritesCard)
+
+  favsPlaceholder.remove();
       
   featuredPopup();
 
@@ -193,6 +158,7 @@ function handleFavoriteClick() {
     favPrice.remove();
     favAccess.remove();
     removeBtn.remove();
+    favoritesCard.remove();
 
     if (favoritesDiv.children.length === 0 && !favoritesDiv.contains(favsPlaceholder)) {
       favoritesDiv.appendChild(favsPlaceholder);
